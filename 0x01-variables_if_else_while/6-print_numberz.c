@@ -15,8 +15,8 @@ int main(void)
 		/*couvert digit to ASCII representetion*/
 		putchar(digit + '0');
 		digit++;
-	}
-	putchar("\n");
+	}		
+	putchar('\n');
 
 	return (0);
 }
