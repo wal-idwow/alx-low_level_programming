@@ -19,7 +19,7 @@ void times_table(void)
 			_putchar(',');
 			_putchar(' ');
 
-			prod = num * mult
+			prod = num * mult;
 			/**
 			* put space if product is a single number
 			* place the first digit if its two numbers
@@ -31,5 +31,6 @@ void times_table(void)
 
 			_putchar((prod % 10) + 48); /* the second digit */
 		}
+		_putchar('\n');
 	}
 }
