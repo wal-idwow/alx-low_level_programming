@@ -18,10 +18,11 @@ char *leet(char *c)
 		for (d = 0; d < sizeof(alpha) / sizeof(char); d++)
 		{
 			/*32 is the difference between lowercase letters and apper ones*/
-			if(*c == alpha[d] || *c == alpha[d] + 32)
+
+			if (*c == alpha[d] || *c == alpha[d] + 32)
 			{
 				*c = 48 + beta[d];
-			} 
+			}
 		}
 		c++;
 	}
