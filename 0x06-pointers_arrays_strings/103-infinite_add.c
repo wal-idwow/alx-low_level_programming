@@ -1,85 +1,68 @@
 #include "main.h"
 
 /**
- * rev_string - reverses a string
- * @n: input string
+ * reverse_string - Reverses a string
+ * @str: The string to be reversed
  */
-void rev_string(char *n)
+void reverse_string(char *str)
 {
-	int i = 0, j = 0;
+
+	int length = 0;
+	int i, j;
 	char temp;
 
-	while (*(n + i) != '\0')
-	{
-		i++;
-	}
-	i--;
+	while (str[length])
+		length++;
 
-	while (j < i)
+	for (i = 0, j = length - 1; i < j; i++, j--)
 	{
-		temp = *(n + j);
-		*(n + j) = *(n + i);
-		*(n + i) = temp;
-		j++;
-		i--;
+		temp = str[i];
+		str[i] = str[j];
+		str[j] = temp;
 	}
 }
 
 /**
- * infinite_add - adds two numbers
- * @n1: first number
- * @n2: second number
- * @r: result buffer
- * @size_r: buffer size
+ * infinite_add - Adds two numbers represented as strings
+ * @n1: First number as a string
+ * @n2: Second number as a string
+ * @r: Buffer to store the result
+ * @size_r: Size of the buffer
  * Return: Pointer to the result
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int overflow = 0, i = 0, j = 0, digits = 0;
-	int val1 = 0, val2 = 0, temp_tot = 0;
+	int i = 0, j = 0, k = 0, carry = 0;
 
-	while (*(n1 + i) != '\0')
+	while (n1[i])
 		i++;
-	while (*(n2 + j) != '\0')
+	while (n2[j])
 		j++;
-		i--;
-		j--;
 
-	if (j >= size_r || i >= size_r)
-		return (0);
+	if (i >= size_r - 1 || j >= size_r - 1)
+	return (0);
 
-	while (j >= 0 || i >= 0 || overflow == 1)
+	r[size_r - 1] = '\0';
+	i--;
+	j--;
+
+	while (i >= 0 || j >= 0 || carry)
 	{
-	if (i < 0)
-		val1 = 0;
-	else
-		val1 = *(n1 + i) - '0';
-
-	if (j < 0)
-		val2 = 0;
-	else
-		val2 = *(n2 + j) - '0';
-
-		temp_tot = val1 + val2 + overflow;
-	if (temp_tot >= 10)
-		overflow = 1;
-	else
-		overflow = 0;
-
-	if (digits >= (size_r - 1))
-		return (0);
-
-	*(r + digits) = (temp_tot % 10) + '0';
-		digits++;
-		j--;
+		int digit1 = (i >= 0) ? n1[i] - '0' : 0;
+		int digit2 = (j >= 0) ? n2[j] - '0' : 0;
+		int sum = digit1 + digit2 + carry;
+		carry = sum / 10;
+		r[k++] = (sum % 10) + '0';
 		i--;
+		j--;
 	}
 
-	if (digits == size_r)
-		return (0);
+	if (k == size_r - 1)
+	return (0);
 
-	*(r + digits) = '\0';
-	rev_string(r);
+	r[k] = '\0';
+	reverse_string(r);
 
-		return (r);
+	return r;
 }
+
