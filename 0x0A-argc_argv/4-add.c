@@ -1,66 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <string.h>
-
-/*
-	* check_num - Checks if a string contains only digits.
-	* @str: The input string to check
-	*
-	* Retrun: (1) if the string contains only digits, (0) otherwise
-*/
-
-int check_num(char *str)
-{
-	/* Declaring variables */
-	unsigned int count;
-
-	count = 0;
-	while (count < strlen(str)) /*count string*/
-	{
-		if (!isdigit(str[count])) /*check str = digit*/
-		{
-			return (0);
-		}
-		count++;
-	}
-	return (1);
-}
 
 /**
-	* main - Entry point
-	* @argc: the argument count
-	* @argv: the argument array
+	* main - add positive numbers
+	* @argc: number of command line argument
+	* @argv: array that contains the program command line
 	*
-	* Return: (0) on success, (1) on error
+	* Return: (0)
 */
-
 int main(int argc, char *argv[])
 {
-	int sum = 0;
-	int i;
+	int i, j, add = 0;
 
-	if (argc == 1)
-	{
-		printf("0\n");
-		return (0);
-	}
 	for (i = 1; i < argc; i++)
 	{
-		int j = 0;
-
-		while (argv[i][j])
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			if (!check_num(argv[i]))
+			if (argc == 1)
 			{
 				printf("Error\n");
 				return (1);
 			}
-			j++;
 		}
 
-		sum += atoi(argv[i]);
+		add += atoi(argv[i]);
 	}
-	printf("%d\n", sum);
+	printf("%d\n", add);
 	return (0);
 }
