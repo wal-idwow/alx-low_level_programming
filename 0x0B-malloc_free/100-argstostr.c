@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/***/
+/**
+	* argstostr - concatenates all the arguments of your program
+	* @ac: the argument count
+	* @av: the argument vector
+	 *Return: (s)
+*/
 
 char *argstostr(int ac, char **av)
 {
