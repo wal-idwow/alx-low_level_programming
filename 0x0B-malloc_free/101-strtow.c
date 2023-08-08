@@ -1,4 +1,8 @@
 #include "main.h"
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
 
 /**
 	* wrdcnt - counts the number of words in a string
@@ -18,30 +22,27 @@ int wrdcnt(char *s)
 				n++;
 		}
 		else if (i == 0)
+		{
 			n++;
+		}
 	}
 	return (n);
 }
-
 /**
-	* strtow - splits a string into words
-	* @str: string to split	* Return: pointer to an array of string
+	* allocate_words - allocates memory for words in the string
+	* @str: input string
+	* @n: number of words
 	* Return: pointer to an array of strings
 */
-
-char **strtow(char *str)
+char **allocate_words(char *str, int n)
 {
-	int i, j, k, l, n = 0, wc = 0;
+	int i, j, l, wc = 0;
 	char **w;
 
-	if (str == NULL || *str == '\0')
-		return (NULL);
-	n = wrdcnt(str);
-	if (n == 0)
-		return (NULL);
 	w = (char **)malloc((n + 1) * sizeof(char *));
 	if (w == NULL)
-		return (NULL);
+	return (NULL);
+
 	w[n] = NULL;
 	i = 0;
 	while (str[i])
@@ -52,14 +53,14 @@ char **strtow(char *str)
 			;
 
 			w[wc] = (char *)malloc((j + 1) * sizeof(char));
-
 			if (w[wc] == NULL)
 			{
-				for (k = 0; k < wc; k++)
-					free(w[k]);
+				for (l = 0; l < wc; l++)
+					free(w[l]);
 				free(w);
 				return (NULL);
 			}
+
 			for (l = 0; l < j; l++)
 				w[wc][l] = str[i + l];
 			w[wc][l] = '\0';
@@ -68,8 +69,28 @@ char **strtow(char *str)
 		}
 		else
 		{
-			i++;
+		i++;
 		}
 	}
 	return (w);
+}
+
+/**
+	* strtow - splits a string into words
+	* @str: string to split	* Return: pointer to an array of string
+	* Return: pointer to an array of strings
+*/
+char **strtow(char *str)
+{
+	int n;
+
+	if (str == NULL || *str == '\0')
+		return (NULL);
+
+	n = wrdcnt(str);
+
+	if (n == 0)
+		return (NULL);
+
+	return (allocate_words(str, n));
 }
