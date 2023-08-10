@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
 	* string_nconcat - concatenates two strings
@@ -9,7 +10,7 @@
 	* Return: Pointer to space in memory containing concatenated string
 */
 
-char *string_nconcat(char *s1, char *s2, unsigned int n);
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *str;
 	unsigned int i, j, s1_len, s2_len;
