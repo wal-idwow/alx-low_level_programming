@@ -3,89 +3,47 @@
 #include <stdarg.h>
 
 /**
-	* format_char - formats character
-	* @separator: string separator
-	* @ap: argument pointer
-*/
-
-void format_char(char *separator, va_list ap)
-{
-	printf("%s%c", separator, va_arg(ap, int));
-}
-
-/**
-	* format_int - formats integer
-	* @separator: string separator
-	* @ap: argument pointer
-*/
-
-void format_int(char *separator, va_list ap)
-{
-	printf("%s%d", separator, va_arg(ap, int));
-}
-
-/**
-	* format_float - formats float
-	* @separator: string separator
-	* @ap: argument pointer
-*/
-
-void format_float(char *separator, va_list ap)
-{
-	printf("%s%f", separator, va_arg(ap, double));
-}
-
-/**
-	* format_string - format string
-	* @separator: string separator
-	* @ap: argument pointer
-*/
-
-void format_string(char *separator, va_list ap)
-{
-	char *str = va_arg(ap, char *);
-
-	if (!str)
-		str = "(nil)";
-	printf("%s%s", separator, str);
-}
-
-/**
 	* print_all - prints anything
 	* @format: the format sring
 */
 
 void print_all(const char * const format, ...)
 {
-	int a = 0, b;
-	char *separator = "";
-	va_list ap;
-	token_t tokens[] = {
-		{"c", format_char},
-		{"i", format_int},
-		{"f", format_float},
-		{"s", format_string},
-		{NULL, NULL}
-	};
+	int a = 0;
+	char *str, *sep = "";
 
-	va_start(ap, format);
-	while (format && format[a])
+	va_list list;
+
+	va_start(list, format);
+
+	if (format)
 	{
-		b = 0;
-		while (tokens[b].token)
+		while (format[a])
 		{
-			if (format[a] == tokens[b].token[0])
+			switch (format[a])
 			{
-				tokens[b].f(separator, ap);
-				if (*separator == '\0'){
-				separator = ", ";
-				}
+				case 'c':
+					printf("%s%c", sep, va_arg(list, int));
 				break;
+				case 'i':
+					printf("%s%d", sep, va_arg(list, int));
+				break;
+				case 'f':
+					printf("%s%f", sep, va_arg(list, double));
+				case 's':
+					str = va_arg(list, char *);
+					if (!str)
+						str = "(nil)";
+					printf("%s%s", sep, str);
+					break;
+				default:
+					a++;
+					continue;
 			}
-			b++;
+			sep = ", ";
+			a++;
 		}
-		a++;
 	}
 	printf("\n");
-	va_end(ap);
+	va_end(list);
 }
