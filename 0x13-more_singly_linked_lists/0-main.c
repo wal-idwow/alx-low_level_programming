@@ -26,7 +26,7 @@ int main(void)
     new->next = head;
     head = new;
     n = print_listint(head);
-    printf("-> %lu elements\n", n);
+    printf("-> %u elements\n", n);
     free(new);
     return (0);
 }
