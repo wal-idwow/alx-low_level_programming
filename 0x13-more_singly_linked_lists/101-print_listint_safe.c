@@ -14,20 +14,20 @@
 
 const listint_t **_r(const listint_t **list, size_t size, const listint_t *new)
 {
-	const listint_t **nwlst;
+	const listint_t **newlist;
 	size_t a;
 
-	nwlst = malloc(size * sizeof(listint_t *));
-	if (nwlst == NULL)
+	newlist = malloc(size * sizeof(listint_t *));
+	if (newlist == NULL)
 	{
 		free(list);
 		exit(98);
 	}
 	for (a = 0; a < size - 1; a++)
-	nwlst[a] = list[a];
-	nwlst[a] = new;
+	newlist[a] = list[a];
+	newlist[a] = new;
 	free(list);
-	return (nwlst);
+	return (newlist);
 }
 
 /**
