@@ -3,7 +3,7 @@
 /**
 	* get_nodeint_at_index - returns node at index
 	* @head: pointer to first node
-	*
+	* @index: index of node to get
 	* Return: pointer to node
 */
 
