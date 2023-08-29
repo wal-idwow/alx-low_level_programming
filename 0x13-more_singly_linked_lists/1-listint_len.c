@@ -2,7 +2,7 @@
 #include <stddef.h>
 
 /**
-	* print_listint - prints a linke lists
+	* listint_len - prints a linked lists
 	* @h: pointer to first node
 	*
 	* Return: size of list
