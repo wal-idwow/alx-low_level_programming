@@ -1,6 +1,6 @@
 #include "main.h"
 
-#define PERMISSIONS (S_IROTH | S_IWUSR| S_IRUSR| S_IRGRP| S_IWGRP)
+#define PERMISSIONS (S_IROTH | S_IWUSR | S_IRUSR | S_IRGRP | S_IWGRP)
 #define ERR_NOREAD "Error: Can't read from file %s\n"
 #define ERR_NOWRITE "Error: Can't write to %s\n"
 #define ERR_NOCLOSE "Error: Can't close fl %d\n"
