@@ -39,7 +39,7 @@ int main(int arc, char **arv)
 	if (from_fl)
 		dprintf(STDERR_FILENO, ERR_NOCLOSE, from_fl), exit(100);
 	if (to_fl)
-		dprintf(STDERR_FILENO, ERR_NOCLOSE, from_fl), exit(900);
+		dprintf(STDERR_FILENO, ERR_NOCLOSE, from_fl), exit(100);
 
 	return (EXIT_SUCCESS);
 }
