@@ -30,7 +30,7 @@ int main(int arc, char **arv)
 
 	while ((a = read(from_fl, buf, READ_BUF_SIZE)) > 0)
 		if (write(to_fl, buf, a) != a)
-			dprintf(STDERR_FILENO, ERR_NOREAD, arv[2]), exit(99);
+			dprintf(STDERR_FILENO, ERR_NOWRITE, arv[2]), exit(99);
 	if (a == -1)
 		dprintf(STDERR_FILENO, ERR_NOREAD, arv[1]), exit(98);
 
