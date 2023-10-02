@@ -23,10 +23,10 @@ int main(int arc, char **arv)
 		dprintf(STDERR_FILENO, USAGE), exit(97);
 	from_fl = open(arv[1], O_RDONLY);
 	if (from_fl == -1)
-		dprintf(STDERR_FILENO, ERR_NOREAD, arv[1]), exit(98);
+		dprintf(STDERR_FILENO, ERR_NOREAD, arv[1]);
 	to_fl = open(arv[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
 	if (to_fl == -1)
-		dprintf(STDERR_FILENO, ERR_NOWRITE, arv[2]), exit(99);
+		dprintf(STDERR_FILENO, ERR_NOWRITE, arv[2]);
 
 	while ((a = read(from_fl, buf, READ_BUF_SIZE)) > 0)
 		if (write(to_fl, buf, a) != a)
