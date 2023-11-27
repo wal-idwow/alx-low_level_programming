@@ -9,6 +9,7 @@
 int append_text_to_file(const char *filename, char *text_content)
 {
 	int fd, bytes_written;
+	size_t len;
 
 	/* Check if the filename or text_content is NULL */
 	if (!filename || !text_content)
@@ -21,8 +22,11 @@ int append_text_to_file(const char *filename, char *text_content)
 	if (fd == -1)
 		return (-1);
 
+	/*get the length of the text_content*/
+	len = strlen(text_content);
+
 	/* Write text_content to the file */
-	bytes_written = write(fd, text_content, strlen(text_content));
+	bytes_written = write(fd, text_content, len);
 
 	/* Check if writing to the file failed */
 	if (bytes_written == -1)
@@ -35,4 +39,3 @@ int append_text_to_file(const char *filename, char *text_content)
 	/* Return 1 to indicate success */
 	return (1);
 }
-
