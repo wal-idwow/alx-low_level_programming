@@ -8,34 +8,22 @@
 */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int fd, bytes_written;
-	size_t len;
+	int op;
+	int wr;
+	int len = 0;
 
-	/* Check if the filename or text_content is NULL */
-	if (!filename || !text_content)
-		return (-1);
-
-	/* Open the file for writing and appending */
-	fd = open(filename, O_WRONLY | O_APPEND);
-
-	/* Check if opening the file failed */
-	if (fd == -1)
-		return (-1);
-
-	/*get the length of the text_content*/
-	len = strlen(text_content);
-
-	/* Write text_content to the file */
-	bytes_written = write(fd, text_content, len);
-
-	/* Check if writing to the file failed */
-	if (bytes_written == -1)
+	if (filename == NULL)
 	{
-		close(fd);
-		return (-1);
+		for (len = 0; text_content[len]; len++)
+			;
 	}
-	close(fd);
 
-	/* Return 1 to indicate success */
+	op = open(filename, O_WRONLY | O_APPEND);
+	wr = write(op, text_content, len);
+
+	if (op == -1 || wr == -1)
+		return (-1);
+
+	close(op);
 	return (1);
 }
