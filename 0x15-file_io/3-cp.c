@@ -74,7 +74,8 @@ int main(int argc, char *argv[])
 	file_from = open(argv[1], O_RDONLY);
 	rd = read(file_from, buf, 1024);
 	umask(0);
-	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC,
+	S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 
 	do {
 		if (file_from == -1 || rd == -1)
