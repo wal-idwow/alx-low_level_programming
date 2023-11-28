@@ -72,7 +72,6 @@ int main(int argc, char *argv[])
 	buf = buffer_creator(argv[2]);
 	file_from = open(argv[1], O_RDONLY);
 	rd = read(file_from, buf, 1024);
-    umask(0);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
