@@ -1,9 +1,9 @@
 #ifndef ELF_FUNCTIONS_H
 #define ELF_FUNCTIONS_H
 
-/*
- * Desc: Header file containing prototypes for all functions
- *       written in the 100-elf_header.c file in 0x14-file_io directory.
+/**
+ * header file containing prototypes of functions
+ *          in 100-elf_header.c file
  */
 
 #include <stdio.h>
@@ -20,12 +20,12 @@
 void it_is_elf(unsigned char *e_ident);
 void magic_out(unsigned char *e_ident);
 void class_out(unsigned char *e_ident);
-void print_data(unsigned char *e_ident);
-void print_version(unsigned char *e_ident);
-void print_abi(unsigned char *e_ident);
-void print_osabi(unsigned char *e_ident);
-void print_type(unsigned int e_type, unsigned char *e_ident);
-void print_entry(unsigned long int e_entry, unsigned char *e_ident);
+void data_out(unsigned char *e_ident);
+void version_out(unsigned char *e_ident);
+void abi_out(unsigned char *e_ident);
+void osabi_out(unsigned char *e_ident);
+void type_out(unsigned int e_type, unsigned char *e_ident);
+void entry_out(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
 #endif
