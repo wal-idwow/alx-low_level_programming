@@ -1,71 +1,52 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 /**
-* generatePassword - Generates a password for the crackme5 executable.
-* @input: The input string for password generation.
-*
-* Return: A dynamically allocated string containing the generated password.
-*/
-char *generatePassword(const char *input)
+ * main - Generates and prints psswrds for the crackme5 executable
+ * @argc: arguments number of supplied to the program
+ * @argv: array of pointers to the arguments
+ * Return: (0) Always
+ */
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-	const char *codex = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
+	char psswrd[7], *code;
+	int len = strlen(argv[1]), temp, i;
 
-	int len = strlen(input), i, tmp;
+	code = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 
-	char *password = (char *)malloc(7 * sizeof(char));
+	temp = (len ^ 59) & 63;
+	psswrd[0] = code[temp];
 
-	if (password == NULL) {
-		perror("Memory allocation error");
-		exit(EXIT_FAILURE);
-	}
-
-	tmp = (len ^ 59) & 63;
-	password[0] = codex[tmp];
-
-	tmp = 0;
+	temp = 0;
 	for (i = 0; i < len; i++)
-		tmp += input[i];
-	password[1] = codex[(tmp ^ 79) & 63];
+		temp += argv[1][i];
+	psswrd[1] = code[(temp ^ 79) & 63];
 
-	tmp = 1;
+	temp = 1;
 	for (i = 0; i < len; i++)
-		tmp *= input[i];
-	password[2] = codex[(tmp ^ 85) & 63];
+		temp *= argv[1][i];
+	psswrd[2] = code[(temp ^ 85) & 63];
 
-	tmp = 0;
-	for (i = 0; i < len; i++) {
-		if (input[i] > tmp)
-			tmp = input[i];
-	}
-	srand(tmp ^ 14);
-	password[3] = codex[rand() & 63];
-
-	tmp = 0;
+	temp = 0;
 	for (i = 0; i < len; i++)
-		tmp += (input[i] * input[i]);
-	password[4] = codex[(tmp ^ 239) & 63];
-
-	for (i = 0; i < input[0]; i++)
-		tmp = rand();
-	password[5] = codex[(tmp ^ 229) & 63];
-
-	password[6] = '\0';
-	return (password);
-}
-
-int main(int argc, char *argv[]) {
-
-	if (argc != 2) {
-		fprintf(stderr, "Usage: %s <input>\n", argv[0]);
-		return (EXIT_FAILURE);
+	{
+		if (argv[1][i] > temp)
+			temp = argv[1][i];
 	}
+	srand(temp ^ 14);
+	psswrd[3] = code[rand() & 63];
 
-	char *password = generatePassword(argv[1]);
+	temp = 0;
+	for (i = 0; i < len; i++)
+		temp += (argv[1][i] * argv[1][i]);
+	psswrd[4] = code[(temp ^ 239) & 63];
 
-	printf("%s\n", password);
+	for (i = 0; i < argv[1][0]; i++)
+		temp = rand();
+	psswrd[5] = code[(temp ^ 229) & 63];
 
-	free(password);  // Don't forget to free the allocated memory
-	return (EXIT_SUCCESS);
+	psswrd[6] = '\0';
+	printf("%s", psswrd);
+	return (0);
 }
