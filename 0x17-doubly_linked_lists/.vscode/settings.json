@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "files.associations": {
+        "stddef.h": "c",
+        "lists.h": "c"
+    }
+}
