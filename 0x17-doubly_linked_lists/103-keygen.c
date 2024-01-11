@@ -3,30 +3,37 @@
 #include <string.h>
 
 /**
- * main - Generates and prints psswrds for the crackme5 executable
- * @argc: arguments number of supplied to the program
- * @argv: array of pointers to the arguments
- * Return: (0) Always
+ * main - Generates and prints passwords for the crackme5 executable
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
+ *
+ * Return: Always 0.
  */
-int main(int __attribute__((__unused__)) argc, char *argv[])
+int main(int argc, char **argv)
 {
-	char psswrd[7], *code;
+	if (argc != 2)
+	{
+		fprintf(stderr, "Usage: %s <input>\n", argv[0]);
+		return EXIT_FAILURE;
+	}
+
+	char password[7], *code;
 	int len = strlen(argv[1]), temp, i;
 
 	code = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 
 	temp = (len ^ 59) & 63;
-	psswrd[0] = code[temp];
+	password[0] = code[temp];
 
 	temp = 0;
 	for (i = 0; i < len; i++)
 		temp += argv[1][i];
-	psswrd[1] = code[(temp ^ 79) & 63];
+	password[1] = code[(temp ^ 79) & 63];
 
 	temp = 1;
 	for (i = 0; i < len; i++)
 		temp *= argv[1][i];
-	psswrd[2] = code[(temp ^ 85) & 63];
+	password[2] = code[(temp ^ 85) & 63];
 
 	temp = 0;
 	for (i = 0; i < len; i++)
@@ -35,18 +42,18 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 			temp = argv[1][i];
 	}
 	srand(temp ^ 14);
-	psswrd[3] = code[rand() & 63];
+	password[3] = code[rand() & 63];
 
 	temp = 0;
 	for (i = 0; i < len; i++)
 		temp += (argv[1][i] * argv[1][i]);
-	psswrd[4] = code[(temp ^ 239) & 63];
+	password[4] = code[(temp ^ 239) & 63];
 
 	for (i = 0; i < argv[1][0]; i++)
 		temp = rand();
-	psswrd[5] = code[(temp ^ 229) & 63];
+	password[5] = code[(temp ^ 229) & 63];
 
-	psswrd[6] = '\0';
-	printf("%s", psswrd);
-	return (0);
+	password[6] = '\0';
+	printf("%s\n", password);
+	return EXIT_SUCCESS;
 }
