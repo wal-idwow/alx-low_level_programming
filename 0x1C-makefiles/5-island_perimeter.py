@@ -1,4 +1,4 @@
-#!/usr/bin/python3"
+#!/usr/bin/python3
 """define island perimeter described in grid"""
 
 
