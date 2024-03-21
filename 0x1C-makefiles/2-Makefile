@@ -16,4 +16,3 @@ all: $(NAME)
 #rule to build the exe from object files
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $@
-
