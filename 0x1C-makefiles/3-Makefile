@@ -1,0 +1,17 @@
+#define the compiler
+CC = gcc
+
+#define .c files
+SRC = $(wildcard *.c) $(wildcard pattern/*.c)
+
+#define .o files
+OBJ = $(SRC:.c=.o)
+
+#define executable name
+NAME = school
+
+#define the program to delete file
+RM = rm -f
+
+all: 
+

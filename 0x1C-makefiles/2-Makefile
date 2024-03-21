@@ -1,0 +1,19 @@
+#define the compiler
+CC = gcc
+
+#define source files using wildcard function
+SRC = $(wildcard *.c) $(wildcard pattern/*.c)
+
+#define object files by replacing .c with .o
+OBJ = $(SRC:.c=.o)
+
+#define output executable name
+NAME = school
+
+#default rule to build the executable
+all: $(NAME)
+
+#rule to build the exe from object files
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $@
+
